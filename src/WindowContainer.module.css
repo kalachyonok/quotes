@@ -1,0 +1,34 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: solid;
+  border-style: dashed;
+
+  width: 500px;
+  height: 150px;
+  background-color: white;
+}
+
+.btn {
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  padding: 3px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.qoute {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
