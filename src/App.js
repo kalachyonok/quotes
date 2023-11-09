@@ -5,13 +5,24 @@ import { useEffect } from "react";
 
 function App() {
   const [quote, setQuote] = useState(null);
-  console.log("App  quote:", quote);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const addNewQuoteHandler = useCallback(async () => {
-    const response = await fetch("https://dummyjson.com/quotes/random");
-    const data = await response.json();
+    setIsLoading(true);
+    setError(false);
 
-    setQuote(data);
+    try {
+      const response = await fetch("https://dummyjson.com/quotes/random");
+      if (!response.ok) {
+        throw new Error("Что-то пошло не так");
+      }
+      const data = await response.json();
+      setQuote(data);
+    } catch (e) {
+      setError(e.message);
+    }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -21,7 +32,12 @@ function App() {
   return (
     <div className={style.wrap}>
       <h1 className={style.title}>Quotes</h1>
-      <WindowContainer quote={quote} onAddNewQuote={addNewQuoteHandler} />
+      <WindowContainer
+        isLoading={isLoading}
+        error={error}
+        quote={quote}
+        onAddNewQuote={addNewQuoteHandler}
+      />
     </div>
   );
 }
