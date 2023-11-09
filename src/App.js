@@ -1,18 +1,22 @@
 import style from "./App.module.css";
 import { WindowContainer } from "./WindowContainer";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react";
 
 function App() {
   const [quote, setQuote] = useState(null);
   console.log("App  quote:", quote);
 
-  async function addNewQuoteHandler() {
+  const addNewQuoteHandler = useCallback(async () => {
     const response = await fetch("https://dummyjson.com/quotes/random");
     const data = await response.json();
-    console.log(data);
+
     setQuote(data);
-  }
+  }, []);
+
+  useEffect(() => {
+    addNewQuoteHandler();
+  }, [addNewQuoteHandler]);
 
   return (
     <div className={style.wrap}>
