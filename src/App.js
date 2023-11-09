@@ -1,7 +1,7 @@
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 import style from "./App.module.css";
 import { WindowContainer } from "./WindowContainer";
-import { useCallback, useState } from "react";
-import { useEffect } from "react";
 
 function App() {
   const [quote, setQuote] = useState(null);
@@ -13,17 +13,32 @@ function App() {
     setError(false);
 
     try {
-      const response = await fetch("https://dummyjson.com/quotes/random");
-      if (!response.ok) {
-        throw new Error("Что-то пошло не так");
-      }
-      const data = await response.json();
-      setQuote(data);
+      const response = await axios.get("https://dummyjson.com/quotes/random");
+
+      setQuote(response.data);
     } catch (e) {
-      setError(e.message);
+      setError(e.response.data.message || e.message);
     }
     setIsLoading(false);
   }, []);
+
+  // const addNewQuoteHandler = useCallback(async () => {
+  //   setIsLoading(true);
+  //   setError(false);
+
+  //   try {
+  //     const response = await fetch("https://dummyjson.com/quotes/rando");
+  //     if (!response.ok) {
+  //       const data = await response.json();
+  //       throw new Error(data.message || "Что-то пошло не так");
+  //     }
+  //     const data = await response.json();
+  //     setQuote(data);
+  //   } catch (e) {
+  //     setError(e.message);
+  //   }
+  //   setIsLoading(false);
+  // }, []);
 
   useEffect(() => {
     addNewQuoteHandler();

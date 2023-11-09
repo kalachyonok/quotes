@@ -11,7 +11,7 @@ export const WindowContainer = (props) => {
   );
 
   if (isLoading) {
-    content = <p>Идет загрузка</p>;
+    content = <p>Идет загрузка...</p>;
   }
 
   if (error) {
