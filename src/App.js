@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className={style.wrap}>
-      <h1 className={style.title}>Quotes</h1>
+      <h1 className={style.title}>Quote of the day</h1>
       <WindowContainer
         isLoading={isLoading}
         error={error}
