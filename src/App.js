@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
-import style from './App.module.css';
-import { WindowContainer } from './WindowContainer';
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
+import style from "./App.module.css";
+import { WindowContainer } from "./WindowContainer";
 
 function App() {
   const [quote, setQuote] = useState(null);
@@ -13,7 +13,7 @@ function App() {
     setError(false);
 
     try {
-      const response = await axios.get('https://dummyjson.com/quotes/random');
+      const response = await axios.get("https://dummyjson.com/quotes/random");
 
       setQuote(response.data);
     } catch (e) {
