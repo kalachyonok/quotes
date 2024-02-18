@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-import style from "./App.module.css";
-import { WindowContainer } from "./WindowContainer";
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import style from './App.module.css';
+import { WindowContainer } from './WindowContainer';
 
 function App() {
   const [quote, setQuote] = useState(null);
@@ -13,7 +13,7 @@ function App() {
     setError(false);
 
     try {
-      const response = await axios.get("https://dummyjson.com/quotes/random");
+      const response = await axios.get('https://dummyjson.com/quotes/random');
 
       setQuote(response.data);
     } catch (e) {
@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className={style.wrap}>
-      <h1 className={style.title}>Quotes</h1>
+      <h1 className={style.title}>Quote of the day</h1>
       <WindowContainer
         isLoading={isLoading}
         error={error}
